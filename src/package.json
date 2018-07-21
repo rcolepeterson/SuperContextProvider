@@ -1,0 +1,11 @@
+{
+  "name": "supercontextprovider",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "index.js",
+  "dependencies": {
+    "preact": "8.2.5",
+    "preact-context": "1.0.2"
+  }
+}
