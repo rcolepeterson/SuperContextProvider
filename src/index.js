@@ -17,25 +17,12 @@ const initialState = {
 const App = class extends Component {
   constructor(props) {
     super(props);
-    this.toggleTheme = () => {
-      console.log("ok3");
-      this.setState(state => ({
-        medata: "cole"
-      }));
-    };
-    initialState.fetchIt = this.toggleTheme;
     this.state = initialState;
   }
 
   render() {
     return (
-      <AppProvider
-        value={{
-          state: this.state,
-          updateInitialData: this.updateInitialData
-        }}
-        initialState={this.state}
-      >
+      <AppProvider initialState={this.state}>
         <Main data={this.props} />
       </AppProvider>
     );

@@ -2,6 +2,7 @@ import { Component } from "preact";
 import { AppConsumer } from "./AppProvider";
 import FrontPage from "./FrontPage";
 import ArticleDetail from "./ArticleDetail";
+import Footer from "./Footer";
 
 // https://stackoverflow.com/questions/50493447/how-to-update-the-state-of-new-context-provider-after-ajax-success
 
@@ -19,6 +20,7 @@ const WithContext = TheComponent => {
 
 const Main = class extends Component {
   componentDidMount() {
+    //fake load ...
     setTimeout(this.getTiles.bind(this), 1000);
   }
 
@@ -33,6 +35,7 @@ const Main = class extends Component {
       <div>
         <FrontPage />
         <ArticleDetail />
+        <Footer />
       </div>
     );
   }

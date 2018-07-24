@@ -15,7 +15,7 @@ const Tiles = class extends Component {
     return (
       <AppConsumer>
         {state => {
-          console.log("AppConsumer has updated the state:", state);
+          //console.log("Tiles ... AppConsumer has updated the state:", state);
           return (
             <div
               style={{
