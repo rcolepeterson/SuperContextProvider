@@ -1,22 +1,46 @@
 import "./style";
-import { render } from "preact";
-import { AppProvider } from "./AppProvider";
-import FrontPage from "./FrontPage";
-import ArticleDetail from "./ArticleDetail";
+import { render, Component } from "preact";
+import { AppProvider, AppConsumer } from "./AppProvider";
+import Main from "./Main";
+
+const fakeData = {
+  title: "LOADING ..."
+};
 
 const initialState = {
   isCole: true,
   view: "frontpage",
-  tilelist: [1, 2, 3, 5],
-  articleDetail: {}
+  tilelist: [fakeData, fakeData, fakeData, fakeData],
+  articleDetail: {},
+  data: {}
 };
+const App = class extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleTheme = () => {
+      console.log("ok3");
+      this.setState(state => ({
+        medata: "cole"
+      }));
+    };
+    initialState.fetchIt = this.toggleTheme;
+    this.state = initialState;
+  }
 
-const App = () => (
-  <AppProvider initialState={initialState}>
-    <FrontPage />
-    <ArticleDetail />
-  </AppProvider>
-);
+  render() {
+    return (
+      <AppProvider
+        value={{
+          state: this.state,
+          updateInitialData: this.updateInitialData
+        }}
+        initialState={this.state}
+      >
+        <Main data={this.props} />
+      </AppProvider>
+    );
+  }
+};
 
 if (typeof window !== "undefined") {
   render(<App />, document.getElementById("root"));

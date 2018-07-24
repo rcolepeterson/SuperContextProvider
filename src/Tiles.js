@@ -7,7 +7,7 @@ const Tiles = class extends Component {
       state.dispatch({ type: "CHANGE_VIEW", value: "articleDetail" });
     };
     var tiles = state.tilelist.map(item => {
-      return <Tile handler={handler} label={item} />;
+      return <Tile handler={handler} label={item.title} />;
     });
     return tiles;
   }
