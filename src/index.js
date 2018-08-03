@@ -1,33 +1,19 @@
 import "./style";
 import { render, Component } from "preact";
+import { createContext } from "preact-context";
 import { AppProvider, AppConsumer } from "./AppProvider";
 import Main from "./Main";
+//onst AppContext = createContext();
 
-const fakeData = {
-  title: "LOADING ..."
-};
-
-const initialState = {
-  isCole: true,
-  view: "frontpage",
-  tilelist: [fakeData, fakeData, fakeData, fakeData],
-  articleDetail: {},
-  data: {}
-};
-const App = class extends Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-  }
-
+class App extends Component {
   render() {
     return (
-      <AppProvider initialState={this.state}>
-        <Main data={this.props} />
+      <AppProvider>
+        <Main />
       </AppProvider>
     );
   }
-};
+}
 
 if (typeof window !== "undefined") {
   render(<App />, document.getElementById("root"));

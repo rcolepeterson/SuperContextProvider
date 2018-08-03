@@ -1,6 +1,9 @@
 import { Component } from "preact";
 const Footer = class extends Component {
-  shouldComponentUpdate() {
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("Footer: shouldComponentUpdate");
+    console.log("Footer: nextProps", nextProps);
+    console.log("Footer: nextState", nextState);
     return false;
   }
   render() {

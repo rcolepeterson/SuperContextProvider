@@ -3,6 +3,7 @@ import { AppConsumer } from "./AppProvider";
 import FrontPage from "./FrontPage";
 import ArticleDetail from "./ArticleDetail";
 import Footer from "./Footer";
+//import { startListener } from "./listener";
 
 // https://stackoverflow.com/questions/50493447/how-to-update-the-state-of-new-context-provider-after-ajax-success
 
@@ -20,14 +21,26 @@ const WithContext = TheComponent => {
 
 const Main = class extends Component {
   componentDidMount() {
-    //fake load ...
-    setTimeout(this.getTiles.bind(this), 1000);
+    //fake loading ...
+    setTimeout(this.fetchData.bind(this), 1000);
   }
 
-  getTiles() {
-    if (this.props.context) {
-      this.props.context.fetchIt(this.props.data);
+  handleErrors(response) {
+    if (!response.ok) {
+      console.log("error");
+      throw Error(response.statusText);
     }
+    return response;
+  }
+
+  fetchData() {
+    fetch("https://jsonplaceholder.typicode.com/photos")
+      .then(this.handleErrors)
+      .then(result => result.json())
+      .then(data => {
+        this.props.context.dispatch({ type: "FETCH_DATA", value: data });
+      })
+      .catch(error => console.error(error));
   }
 
   render() {

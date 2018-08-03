@@ -6,7 +6,8 @@ const Tiles = class extends Component {
     var handler = () => {
       state.dispatch({ type: "CHANGE_VIEW", value: "articleDetail" });
     };
-    var tiles = state.tilelist.map(item => {
+    var tilelist = state.tilelist ? state.tilelist : [];
+    var tiles = tilelist.map(item => {
       return <Tile handler={handler} label={item.title} />;
     });
     return tiles;
@@ -15,7 +16,7 @@ const Tiles = class extends Component {
     return (
       <AppConsumer>
         {state => {
-          //console.log("Tiles ... AppConsumer has updated the state:", state);
+          console.log("Tiles ... AppConsumer has updated the state:", state);
           return (
             <div
               style={{

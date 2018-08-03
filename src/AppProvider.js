@@ -9,7 +9,11 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "FETCH_DATA") {
-    return { ...state, view: action.value };
+    return { ...state, tilelist: action.value };
+  }
+
+  if (action.type === "CHANGE_SEL_ID") {
+    return { ...state, selid: action.value };
   }
 };
 
@@ -17,20 +21,8 @@ export class AppProvider extends Component {
   methods = {
     dispatch: action => {
       this.setState(state => reducer(state, action));
-    },
-    fetchIt: () => {
-      this.fetchData();
     }
   };
-
-  fetchData() {
-    fetch("https://jsonplaceholder.typicode.com/photos")
-      .then(result => result.json())
-      .then(data => {
-        this.setState({ ...this.state, tilelist: data });
-      })
-      .catch(error => console.error(error));
-  }
 
   constructor(props) {
     super(props);
